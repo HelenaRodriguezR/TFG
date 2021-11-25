@@ -48,7 +48,7 @@ def main():
     groups = train.groupby('ID').size().to_frame('size')['size'].to_numpy()
 
     #Elegimos los hipermarametros del entrenamiento
-    clf_xgb=xgb.XGBRanker( booster='gbtree', objective='rank:ndcg', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5 )
+    clf_xgb=xgb.XGBRanker( booster='gbtree', objective='rank:ndcg', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
 
     clf_xgb.fit(X_train, y_train,group =groups)
 

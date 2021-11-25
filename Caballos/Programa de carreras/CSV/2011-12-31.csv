@@ -1,0 +1,59 @@
+﻿;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+ID;CABALLO;POSICION;PESO;EDAD;JINETE;CUADRA;PREPARADOR;CAJÓN;HIPODROMO;DISTANCIA;PISTA
+1-31/12/2011;MENELDOR (IRE) (9.000);3;59;3;J. CROCQUEVIEILLE;GONZALO HERNANDO-ABOIN;A. CARRASCO;3;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;2100;HIERBA
+1-31/12/2011;TURRIALBA (7.000);2;58;4;I. LÓPEZ;INSTAGONZA;O. ANAYA;5;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;2100;HIERBA
+1-31/12/2011;DIXLESIO (IRE) (7.000);1;57;3;J.L. MARTÍNEZ;RIAS BAIXAS;R. LÓPEZ;2;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;2100;HIERBA
+1-31/12/2011;COMANCHE TRAIL (FR) (5.000);6;56;5;J.E. JARCOVSKY;SOÑADOR;J. SALGUERO;4;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;2100;HIERBA
+1-31/12/2011;ESQUIO (5.000);4;56;4;A. GÓMEZ (53);PEREIRA S.A.T.;J. C. LOPERA;6;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;2100;HIERBA
+1-31/12/2011;PERSICUS (GB) (5.000);5;56;5;F. JIMÉNEZ;HISPANICA;J. C. FERNÁNDEZ;1;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;2100;HIERBA
+;;;;;;;;;;;
+;;;;;;;;;;;
+ID;CABALLO;POSICION;PESO;EDAD;JINETE;CUADRA;PREPARADOR;CAJÓN;HIPODROMO;DISTANCIA;PISTA
+2-31/12/2011;CHIQUI (IRE);1;57;2;C. FERNANDEZ;SUFLE;J. C. FERNÁNDEZ;5;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1200;HIERBA
+2-31/12/2011;DANIEL BOONE;6;57;2;F. JIMÉNEZ;YEGUADA CORTIÑAL;J. A. RODRÍGUEZ;4;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1200;HIERBA
+2-31/12/2011;PACIFIC TRADER (GB);5;57;2;F. ALVARADO;CASTILLO DE CHARETA;B. RAMA;1;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1200;HIERBA
+2-31/12/2011;LA NIÑA (IRE);2;55,5;2;J.L. MARTÍNEZ;ROCHE;M. ÁLVAREZ;7;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1200;HIERBA
+2-31/12/2011;ORLIKA;8;55,5;2;I. LÓPEZ (56);LAS AGUILAS;G. VILLARTA;8;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1200;HIERBA
+2-31/12/2011;SCARLATTI;3;55,5;2;J.L. BORREGO (B. BLANCA);YEGUADA CORTIÑAL;J. M. BORREGO R;2;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1200;HIERBA
+2-31/12/2011;BYRON BABY (IRE);4;55;2;J.E. JARCOVSKY (56);M & K RACING;B. RAMA;6;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1200;HIERBA
+2-31/12/2011;GASPARIÑO;7;55;2;A. GÓMEZ;LUIS ALBERTO NUÑEZ;J. A. RODRÍGUEZ;3;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1200;HIERBA
+;;;;;;;;;;;
+;;;;;;;;;;;
+ID;CABALLO;POSICION;PESO;EDAD;JINETE;CUADRA;PREPARADOR;CAJÓN;HIPODROMO;DISTANCIA;PISTA
+3-31/12/2011;GALEGO;4;60;2;J.L. MARTÍNEZ;YEGUADA GONZALEZ CARO;R. LÓPEZ;6;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;ALFACAR;3;59;2;J. GROSJEAN;EL FARGUE;M. DELCHER S;7;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;EL TIBET (IRE);10;57;2;J.E. JARCOVSKY;MARIA DE SALAS;M. ÁLVAREZ;10;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;FINLEY CONNOLLY (IRE);5;56;2;F. JIMÉNEZ;AMIGA;M. ÁLVAREZ;2;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;FORTUN (IRE);1;56;2;J. CROCQUEVIEILLE;BECARES;J. L. MAROTO;8;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;MAKALALI (GB);2;56;2;I. LÓPEZ;MARTEL SANCHEZ;O. ANAYA;3;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;BARULLO;9;55;2;J.C. CERQUEIRA (57);CEREZO LARRECHE;B. VALENTI;9;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;LONGUEIRON;8;55;2;A. GÓMEZ;PEREIRA S.A.T.;J. C. LOPERA;4;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;MORNING MUSE (IRE);6;54,5;2;R. HUAYAS;NORTENHA;T. MARTINS;5;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+3-31/12/2011;AGALA CANARIAS (IRE);7;53,5;2;M. GOMES;GRUPO BOLAÑOS GRAN CANARIA;E. LEÓN;1;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+;;;;;;;;;;;
+;;;;;;;;;;;
+ID;CABALLO;POSICION;PESO;EDAD;JINETE;CUADRA;PREPARADOR;CAJÓN;HIPODROMO;DISTANCIA;PISTA
+4-31/12/2011;MILAGRES;1;62,5;3;J. GROSJEAN;MAURICIO DELCHER SANCHEZ;M. DELCHER S;3;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;HIGH IKER;10;62;6;J.L. MARTÍNEZ;RIAS BAIXAS;R. LÓPEZ;2;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;AMOREBIETA;11;61,5;3;R. HUAYAS;MADELEINE;A. GUTIÉRREZ;12;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;BIPOLAR;4;60,5;3;M. GOMES;ESPECTACULO;T. MARTINS;7;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;OMNIPOTENT (IRE);2;60,5;3;I. LÓPEZ;INSTAGONZA;O. ANAYA;1;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;BURNING LIGHT (IRE);12;59;4;F. ALVARADO;CASTILLO DE CHARETA;B. RAMA;11;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;ILLIZMIT (FR);5;59;6;A. GÓMEZ (57);LA SUECA;J. C. LOPERA;6;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;STRANGE CAT (FR);3;58,5;3;J. CROCQUEVIEILLE;ALISARES;A. SANCHEZ. C;8;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;FANDIÑO;8;56,5;3;F. JIMÉNEZ;CACHARELA;J. A. RODRÍGUEZ;10;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;SKY BLUE;9;56;4;R. RAMOS;LAS AGUILAS;G. VILLARTA;5;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;COVELO;6;52;6;J.M. SÁNCHEZ C. (50);PEREIRA SAT;J. C. LOPERA;9;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+4-31/12/2011;GRAN AGUILA (GB);7;50;5;C. CAZALIS;YEGUADA IGKAMAR;M. ÁLVAREZ;4;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1800;HIERBA
+;;;;;;;;;;;
+;;;;;;;;;;;
+ID;CABALLO;POSICION;PESO;EDAD;JINETE;CUADRA;PREPARADOR;CAJÓN;HIPODROMO;DISTANCIA;PISTA
+5-31/12/2011;CORCUBION;3;59,5;7;A. GÓMEZ;PEREIRA S.A.T.;J.C. LOPERA;5;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1600;HIERBA
+5-31/12/2011;BOTTEGA (USA);2;58,5;4;J.L. MARTÍNEZ;MADROÑOS;M. DELCHER S;4;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1600;HIERBA
+5-31/12/2011;BRAVE PROSPECTOR (GB);1;58,5;6;J. CROCQUEVIEILLE;C.D.H. LOS ASPIRANTES 2 TUMBOS;T. CALLEJO;6;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1600;HIERBA
+5-31/12/2011;LAAZEM (IRE);4;58,5;4;I. LÓPEZ;HERMANOS GARCIA Y VEGA;O. ANAYA;2;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1600;HIERBA
+5-31/12/2011;BLAISE TOWER (GB);5;57,5;5;F. ALVARADO;CASTILLO DE CHARETA;B. RAMA;3;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1600;HIERBA
+5-31/12/2011;MAKAAMEN (GB);6;57,5;5;J.C. CERQUEIRA;TEODORO CALLEJO;T. CALLEJO;1;Gran Hipódromo de Andalucía Javier Piñar Hafner-Participantes;1600;HIERBA

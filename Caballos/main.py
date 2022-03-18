@@ -1,12 +1,11 @@
 from limpiar_datos import *
 from librerias import *
 
-def main():
+if __name__ == "__main__":
 
     print ('\n[0]##############################')
     #Importar todas las carreras y crear el dataframe
-    archivos_csv = importar_carreras()
-    df = crear_df(archivos_csv)
+    df = crear_df()
     
     print ('\n[1]##############################')
     #Ver el tipo de datos de cada columna
@@ -40,6 +39,3 @@ def main():
     print ('\nSe han guardado todos los datos correcatmente')
 
 
-
-
-main()

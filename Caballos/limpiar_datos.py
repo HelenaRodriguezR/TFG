@@ -1,12 +1,14 @@
-from librerias import *
+import glob
+import pandas as pd
 
-def importar_carreras():
+
+#Importar datos y crear un df con todas las carreras para trabajar con el 
+def crear_df():
+    
+    #Importar carreras
     archivos_csv = glob.glob('../Caballos/ID-Carreras/*.csv')
     print("Se han importado todas las carreras")
-    return archivos_csv
-
-#Crear un df con todas las carreras para trabajar con el 
-def crear_df(archivos_csv):
+    
     #Creamos un dataframe y lo eliminamos del conjunto
     filename = archivos_csv[0]
     archivos_csv.remove(filename)
@@ -19,6 +21,7 @@ def crear_df(archivos_csv):
 
     print(df)
     return df
+    
 #Comprobar cuentos y que datos hay en cada columna
 def dato_colum(df,colum):
     print(colum)

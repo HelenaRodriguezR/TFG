@@ -1,6 +1,9 @@
-from librerias import *
+import pandas as pd
+import xgboost as xgb
+from sklearn.model_selection import GroupShuffleSplit
 
-def main():
+if __name__ == "__main__":
+
 #Importar los datos para trabajar con ellos
     df = pd.read_csv('datos.csv', delimiter=',',encoding="utf-8", header=0, names=['ID','CABALLO','POSICION','EDAD','KG','JINETE','CUADRA','PREPARADOR','CAJÓN','HIPODROMO','DISTANCIA','PISTA'])
 #    print (df)
@@ -51,8 +54,32 @@ def main():
     clf_xgb=xgb.XGBRanker( booster='gbtree', objective='rank:ndcg', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
 
     clf_xgb.fit(X_train, y_train,group =groups)
+    
+    print ('Se ha entrenado el modelo')
+    
+    print ('\n[5]##############################')
+    #Se va a predecir el resultado de las carreras
+    def predict(model, df):
+    	return model.predict(df.loc[:, ~df.columns.isin(['ID'])])
+    
+    predictions = (X_test.groupby('ID').apply(lambda x: predict(clf_xgb, x)))
+    
+    print ('Se ha obtenido el resultado de las carreras')
+    
+        
+    print ('\n[6]##############################')
+    	#Convertimos la serie en un dataframe
+    data_index = predictions.keys().to_list()
+    data=[]
+    
+    for elem in predictions:
+    	data.append(dict(zip(range(len(elem)),elem)))
+    
+    predictions_df = pd.DataFrame(data, index = data_index)
+    predictions_df.to_csv('prediccion.csv', header=0, index= data_index)
+    print ('Se ha guardado en un archivo los resultados de la prediccion')
+    print (predictions_df)
+    
 
 
 
-
-main()

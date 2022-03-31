@@ -35,7 +35,8 @@ if __name__ == "__main__":
 
     X_test = test.loc[:, train.columns!='POSICION']
     y_test = test[['ID','POSICION']].copy()
-
+   
+    print(y_test)
 #    print(X_train['ID'].value_counts())
 #    print(X_test['ID'].value_counts())
 
@@ -76,10 +77,12 @@ if __name__ == "__main__":
     	data.append(dict(zip(range(len(elem)),elem)))
     
     predictions_df = pd.DataFrame(data, index = data_index)
-    predictions_df.to_csv('prediccion.csv', header=0, index= data_index)
+    #predictions_df.to_csv('prediccion.csv', header=0, index= data_index)
+    predictions_df.to_csv('prediccion.csv', header=0)
+    y_test.to_csv('resultados.csv', header=0, index=False)
     print ('Se ha guardado en un archivo los resultados de la prediccion')
-    print (predictions_df)
     
+
 
 
 

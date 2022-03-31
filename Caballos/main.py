@@ -1,5 +1,5 @@
 from limpiar_datos import *
-from librerias import *
+
 
 if __name__ == "__main__":
 
@@ -17,7 +17,9 @@ if __name__ == "__main__":
     data_index = df.keys().to_list()
     for elem in data_index:
         dato_colum(df,elem)
-    
+    #Eliminar todos los caballos que han sido eliminados antes de comenzar las carrera
+    df = df.loc[df['POSICION']!=99.0]
+
     #Sobreescribir valores con formato/datos correctos
     print ('\n[3]##############################')
     print ('\nModificando datos erroneos...')

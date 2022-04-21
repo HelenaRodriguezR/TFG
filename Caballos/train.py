@@ -60,6 +60,7 @@ if __name__ == "__main__":
 
     clf_xgb.fit(X_train, y_train,group =groups)
     
+    
     print ('Se ha entrenado el modelo')
     
     print ('\n[5]##############################')

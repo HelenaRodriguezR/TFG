@@ -36,7 +36,7 @@ if __name__ == "__main__":
     X_test = test.loc[:, train.columns!='POSICION']
     y_test = test[['ID','POSICION']].copy()
    
-    print(y_test)
+    #print(y_test)
 #    print(X_train['ID'].value_counts())
 #    print(X_test['ID'].value_counts())
 
@@ -52,7 +52,11 @@ if __name__ == "__main__":
     groups = train.groupby('ID').size().to_frame('size')['size'].to_numpy()
 
     #Elegimos los hipermarametros del entrenamiento
-    clf_xgb=xgb.XGBRanker( booster='gbtree', objective='rank:ndcg', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
+    #clf_xgb=xgb.XGBRanker( booster='gbtree', objective='rank:ndcg', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
+    
+#    clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.75, colsample_bytree=0.9) 
+    
+    clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=27, learning_rate=0.2, max_depth=6, n_estimators=120, subsample=0.65, colsample_bytree=0.9)
 
     clf_xgb.fit(X_train, y_train,group =groups)
     

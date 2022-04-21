@@ -3,6 +3,45 @@ import numpy as np
 from pylab import * 
 import matplotlib.pyplot as plt
 
+def aciertos_poss(predictions_df, y_test, i):
+        #Aciertos en la primera posicion 
+    lista=[]
+
+    for elem in predictions_df.index:
+
+        caballo = predictions_df.columns[predictions_df.loc[elem] == i].tolist()
+        #print (caballo)
+        poss_pred = predictions_df.loc[elem,caballo].iloc[0]
+        #print (poss_pred)
+        poss_real = y_test.loc[y_test['ID']==elem]
+        cur_results = y_test.loc[y_test['ID']==elem]
+        poss_real = cur_results['POSICION'].iloc[caballo].tolist()
+        #poss_real = poss_real.tolist()
+        
+        #print (poss_real)
+        resul = int(poss_real[0]-1) - poss_pred
+        #print(resul)
+        lista.append(resul)
+    return lista
+    print(lista)
+
+def visualizar_plot(lista):
+    plot_resul = pd.DataFrame(lista, index = data_index)
+    #print(plot_resul)
+    plot_resul = plot_resul[0].value_counts(normalize = True, sort=False) * 100 #% de posiciones acertadas
+    #plot_resul = plot_resul[0].value_counts(sort=False) #Nº de posiciones acertadas
+    plot_resul = plot_resul.sort_index(axis=0)
+    
+    print(plot_resul)
+    #print(predictions_df.columns)
+    plot_resul.plot.bar(plot_resul)
+    #lista.bar(lista)
+ 
+ 
+    draw()
+    savefig("012"[i], dpi=300)
+    
+    
 if __name__ == "__main__":
 
     #Importar los datos de la predccion y los resultados reales
@@ -30,27 +69,13 @@ if __name__ == "__main__":
     predictions_df = pd.DataFrame(data, index = data_index)
     #print (predictions_df)
     
+    for i in [0,1,2]:
+        #Aciertos en todas las posiciones
+        lista = aciertos_poss(predictions_df, y_test, i)
+        #Visualizar los datos
+        visualizar_plot(lista)
     
-    #Aciertos en la primera posicion 
-    lista=[]
-
-    for elem in predictions_df.index:
-
-        p = predictions_df.columns[predictions_df.loc[elem] == 0].tolist()
-        #print (p)
-        poss_pred = predictions_df.loc[elem,p].iloc[0]
-        #print (poss_pred)
-        poss_real = y_test.loc[y_test['ID']==elem]
-        cur_results = y_test.loc[y_test['ID']==elem]
-        poss_real = cur_results['POSICION'].iloc[p].tolist()
-        #poss_real = poss_real.tolist()
-        
-        #print (poss_real)
-        resul = int(poss_real[0]-1) - poss_pred
-        #print(resul)
-        lista.append(resul)
- 
-    #print(lista)
+    
     """lista=[]
     for elem in predictions_df.index:
     	caballo_poss = predictions_df.loc[elem,[0]].iloc[0]
@@ -58,22 +83,14 @@ if __name__ == "__main__":
     	resul = poss_real - 0
     	lista.append(resul)"""
     #lista = dict(zip(lista,map(lambda x: lista.count(x),lista)))
-    print(lista)
+    #print(lista)
 
     #Visualizamos los resultados en una grafica
     #plot_resul = pd.DataFrame(lista, index = data_index)
     #plot_resul = plot_resul['POSICION'].value_counts(sort=False)
     
-    plot_resul = pd.DataFrame(lista, index = data_index)
-    print(plot_resul)
-    plot_resul = plot_resul[0].value_counts(normalize = True, sort=False) * 100
-    plot_resul = plot_resul.sort_index(axis=0)
+
     
-    print(plot_resul)
-    #print(predictions_df.columns)
-    plot_resul.plot.bar(plot_resul)
-    #lista.bar(lista)
- 
- 
-    draw()
-    savefig("prueba", dpi=300)
+    
+    
+

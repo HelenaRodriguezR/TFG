@@ -2,25 +2,6 @@ import glob
 import pandas as pd
 
 
-#Importar datos y crear un df con todas las carreras para trabajar con el 
-def crear_df():
-    
-    #Importar carreras
-    archivos_csv = glob.glob('../Caballos/ID-Carreras/*.csv')
-    print("Se han importado todas las carreras")
-    
-    #Creamos un dataframe y lo eliminamos del conjunto
-    filename = archivos_csv[0]
-    archivos_csv.remove(filename)
-    df = pd.read_csv(filename, delimiter=',',encoding="utf-8",header=0)
-
-    #Escribimos un loop que ira añadiendo cada uno de los nombres del archivo al dataframe final
-    for filename in archivos_csv:
-        data = pd.read_csv(filename,delimiter=',',encoding="utf-8",header=0)
-        df = df.append(data)
-
-    print(df)
-    return df
     
 #Comprobar cuentos y que datos hay en cada columna
 def dato_colum(df,colum):

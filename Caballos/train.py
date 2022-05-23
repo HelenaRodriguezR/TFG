@@ -7,7 +7,10 @@ if __name__ == "__main__":
     print ('\n[1]##############################')
     
     ###Importar los datos para trabajar con ellos###
-    df = pd.read_csv('datos.csv', delimiter=',',encoding="utf-8", header=0, names=['ID','CABALLO','POSICION','EDAD','KG','JINETE','CUADRA','PREPARADOR','CAJÓN','HIPODROMO','DISTANCIA','PISTA'])
+    
+    #La primera linea importa los datos no revisados manualmente
+    #df = pd.read_csv('datos.csv', delimiter=',',encoding="utf-8", header=0, names=['ID','CABALLO','POSICION','EDAD','KG','JINETE','CUADRA','PREPARADOR','CAJÓN','HIPODROMO','DISTANCIA','PISTA'])
+    df = pd.read_csv('datos-rev.csv', delimiter=',',encoding="utf-8", header=0, names=['ID','CABALLO','POSICION','EDAD','KG','JINETE','CUADRA','PREPARADOR','CAJÓN','HIPODROMO','DISTANCIA','PISTA'])
     #print (df)
     
     print('Se han importado correctamente los datos')

@@ -1,6 +1,11 @@
 import pandas as pd
 import xgboost as xgb
 from sklearn.model_selection import GroupShuffleSplit
+from category_encoders import BinaryEncoder
+from pylab import * 
+import matplotlib.pyplot as plt
+
+
 
 if __name__ == "__main__":
 
@@ -20,14 +25,38 @@ if __name__ == "__main__":
     print ('\n[2]##############################')
     
     ###Con XGBoots no podemos tener datos categoricos, por lo que vamos a realizar una codificacion en caliente###
-    df = pd.get_dummies(df,columns=['CABALLO','JINETE','CUADRA','PREPARADOR','HIPODROMO','PISTA'])
+    #df = pd.get_dummies(df,columns=['CABALLO','JINETE','CUADRA','PREPARADOR','HIPODROMO','PISTA'])
     
+    
+    ###En vez de una codificacion caliente se va a realizar una codificacion binaria###
+    ###PRUEBA2###
+    column = ['CABALLO','JINETE','CUADRA','PREPARADOR','HIPODROMO','PISTA']
+    # Se va a crear el codificador con cada columna
+    
+    for i in column:
+        encoder = BinaryEncoder(cols=[i])
+        
+        # Ajustamos el codificador y lo transformamos
+        encoder.fit(df[i])
+        df_bin = encoder.transform(df[i])
+        
+        #Se van a unir las diferentes columnas de cada dato codificado en una sola
+        df_bin= df_bin.applymap(str)
+        y = df_bin.columns
+        df_bin[i] = df_bin[y].apply(''.join, axis=1) #Para poder utilizar el join, se hah pasado los datos a str
+        df_bin[i] = df_bin[i].astype(int)
+        
+        #Se va a sobreescribir el dato categorico por su dato binario 
+        df[i] = df_bin[i]
+     
+    print(df)
+ 
     
     #####MODIFICACION DE PARAMETROS DE ENTRADA#####
     #df = df.drop(['PREPARADOR','HIPODROMO','DISTANCIA','PISTA'],axis=1).copy()
     #print(df)
     #df = pd.get_dummies(df,columns=['CABALLO', 'JINETE', 'CUADRA'])
-    
+  
     print('Codificacion en caliente realizada')
 
 #########################################################################################################################
@@ -79,8 +108,18 @@ if __name__ == "__main__":
     ####MODELO 3####
     #clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=27, learning_rate=0.2, max_depth=6, n_estimators=120, subsample=0.65, colsample_bytree=0.9)
 
+    ####MODELO 4####
+    #clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.2, max_depth=6, n_estimators=120, subsample=0.65, colsample_bytree=0.9)
+
+    
     ###Se entrena el modelo###
     clf_xgb.fit(X_train, y_train,group =groups)
+
+
+    ###Se muestra que columna da mas importancia el modelo###
+    xgb.plot_importance(clf_xgb)
+    draw()
+    savefig("importancia", dpi=300)
     
     print ('Se ha entrenado el modelo')
     

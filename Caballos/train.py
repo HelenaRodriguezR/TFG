@@ -1,6 +1,7 @@
 import pandas as pd
 import xgboost as xgb
 from sklearn.model_selection import GroupShuffleSplit
+from sklearn.model_selection import GridSearchCV
 from category_encoders import BinaryEncoder
 from pylab import * 
 import matplotlib.pyplot as plt
@@ -34,6 +35,7 @@ if __name__ == "__main__":
     # Se va a crear el codificador con cada columna
     
     for i in column:
+    
         encoder = BinaryEncoder(cols=[i])
         
         # Ajustamos el codificador y lo transformamos
@@ -97,10 +99,24 @@ if __name__ == "__main__":
     #Para utilizar XGBoostRanker, debemos indicar el grupo al que debe clasificar
     groups = train.groupby('ID').size().to_frame('size')['size'].to_numpy()
 
+
     ###Elegimos los hipermarametros del entrenamiento###
     
+    xgbr = xgb.XGBRanker(tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
+    
+    param = { 
+    'random_state':[2,7,30,42],
+    'learning_rate':[0.05,0.1,0.15,0.2,0.25,0.3], 
+    'max_depth':[4,5,6,7,8],
+    'n_estimators':[50,100,150,200],
+    'min_child_weight':[2,4,6],
+    'subsample':[0.5, 0.65,0.7,0.75,0.8]
+    }
+    
+    clf_xgb= GridSearchCV(xgbr, param_grid = param, cv = 3, scoring='accuracy')
+   
     ####MODELO 1####
-    clf_xgb=xgb.XGBRanker( booster='gbtree', objective='rank:ndcg', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
+    #clf_xgb=xgb.XGBRanker( booster='gbtree', objective='rank:ndcg', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
     
     ####MODELO 2####
     #clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.75, colsample_bytree=0.9) 
@@ -113,13 +129,16 @@ if __name__ == "__main__":
 
     
     ###Se entrena el modelo###
-    clf_xgb.fit(X_train, y_train,group =groups)
+    clf_xgb.fit(X_train, y_train,group =groups, verbose=1)    
+    
+    print ("Mejor parametros")
+    print (clf_xgb.best_params_)
 
 
     ###Se muestra que columna da mas importancia el modelo###
-    xgb.plot_importance(clf_xgb)
-    draw()
-    savefig("importancia", dpi=300)
+    #xgb.plot_importance(clf_xgb)
+    #draw()
+    #savefig("importancia", dpi=300)
     
     print ('Se ha entrenado el modelo')
     

@@ -5,6 +5,9 @@ from sklearn.model_selection import GridSearchCV
 from category_encoders import BinaryEncoder
 from pylab import * 
 import matplotlib.pyplot as plt
+from statistics import mode
+import collections
+
 
 
 
@@ -14,23 +17,74 @@ if __name__ == "__main__":
     
     ###Importar los datos para trabajar con ellos###
     
-    #La primera linea importa los datos no revisados manualmente
-    #df = pd.read_csv('datos.csv', delimiter=',',encoding="utf-8", header=0, names=['ID','CABALLO','POSICION','EDAD','KG','JINETE','CUADRA','PREPARADOR','CAJÓN','HIPODROMO','DISTANCIA','PISTA'])
     df = pd.read_csv('datos-revisados.csv', delimiter=',',encoding="utf-8", header=0, names=['ID','CABALLO','POSICION','EDAD','KG','JINETE','CUADRA','PREPARADOR','CAJÓN','HIPODROMO','DISTANCIA','PISTA'])
-    #print (df)
+    print (df)
 
     print('Se han importado correctamente los datos')
+    
+#########################################################################################################################    
 
+    ###Modificaciones 4.6.2###
+    
+    #PRUEBA 2#
+    
+    #Importar los datos que contienen el numero de participantes en cada carrera
+    #df = pd.read_csv('datos-prueba2.csv', delimiter=',',encoding="utf-8", header=0, names=['ID','CABALLO','POSICION','EDAD','KG','JINETE','CUADRA','PREPARADOR','CAJÓN','HIPODROMO','DISTANCIA','PISTA','PARTICIPANTES'])
+    
+    #print('Media:')
+    #print(mean(df['ID'].value_counts()))
+    #print('Moda:')
+    #print(mode(df['ID'].value_counts()))
+    
+
+    
+    #Filtrar todas las columnas en las que el numero de participantes sea la moda df=df[filtro]
+    #df = df[df['PARTICIPANTES'] == mode(df['ID'].value_counts())]
+    
+    #Se elimina la columna PARTICIPANTES
+    #df = df.drop('PARTICIPANTES',axis=1).copy()
+    
+    #print(df)
+    #print(df['CABALLO'].value_counts())
+
+    #print('Se han importado correctamente los datos')
+    
+    
+    #PRUEBA 3#
+    
+    #Importar los datos que contienen el numero de participantes en cada carrera
+    #df = pd.read_csv('datos-prueba3.csv', delimiter=',',encoding="utf-8", header=0, names=['ID','CABALLO','POSICION','EDAD','KG','JINETE','CUADRA','PREPARADOR','CAJÓN','HIPODROMO','DISTANCIA','PISTA','APARICIONES'])
+    
+    #Ordenar los datos por ID
+    #df= df.sort_values('ID')
+    
+    #Filtrar los caballos que aparecen mas de x veces
+    #filtro = df['ID'].loc[df['APARICIONES'] > 20].tolist()   
+    #df = df[df.ID.isin(filtro)]
+    
+    #Eliminar caballos que aparecen menos de 5 veces
+    #filtro = df['ID'].loc[df['APARICIONES'] < 5].tolist()
+    #df = df[~df.ID.isin(filtro)]
+    
+    #df.to_csv('prueba.csv', header=0, index=False)
+    
+    #Se elimina la columna APARICIONES
+    #df = df.drop('APARICIONES',axis=1).copy()    
+        
+    
+   
+    
+    print(df)
 #########################################################################################################################
 
     print ('\n[2]##############################')
     
     ###Con XGBoots no podemos tener datos categoricos, por lo que vamos a realizar una codificacion en caliente###
     #df = pd.get_dummies(df,columns=['CABALLO','JINETE','CUADRA','PREPARADOR','HIPODROMO','PISTA'])
-    
+    #print('Codificacion en caliente realizada')
     
     ###En vez de una codificacion caliente se va a realizar una codificacion binaria###
-    ###PRUEBA2###
+    ### PRUEBA1 (4.6.2) ###
     column = ['CABALLO','JINETE','CUADRA','PREPARADOR','HIPODROMO','PISTA']
     # Se va a crear el codificador con cada columna
     
@@ -51,37 +105,40 @@ if __name__ == "__main__":
         #Se va a sobreescribir el dato categorico por su dato binario 
         df[i] = df_bin[i]
      
-    print(df)
- 
+    print('Codificacion binaria realizada')
     
     #####MODIFICACION DE PARAMETROS DE ENTRADA#####
     #df = df.drop(['PREPARADOR','HIPODROMO','DISTANCIA','PISTA'],axis=1).copy()
     #print(df)
     #df = pd.get_dummies(df,columns=['CABALLO', 'JINETE', 'CUADRA'])
-  
-    print('Codificacion en caliente realizada')
+    #print('Codificacion en caliente realizada')
+    
+    print(df)
 
 #########################################################################################################################
 
     print ('\n[3]##############################')
     
     ###Se divididen los datos en dos grupos sin que se separen caballos de una carrera###
-    gss = GroupShuffleSplit(train_size=.60, n_splits=1, random_state = 7).split(df, groups=df['ID'])
+    gss = GroupShuffleSplit(train_size=.70, n_splits=1, random_state = 7).split(df, groups=df['ID'])
 
     train_inds, test_inds = next(gss)
     
     ###Se guardan los datos necesarios en las variables de entrenamiento y test###
-    train= df.iloc[train_inds]
+    train= df.iloc[train_inds].sort_values('ID')
+    
     X_train = train.loc[:, train.columns!='POSICION']
     y_train = train['POSICION'].copy()
 
+  
     test= df.iloc[test_inds]
 
     X_test = test.loc[:, train.columns!='POSICION']
     y_test = test[['ID','POSICION']].copy()
    
     #Comprobaciones de division de datos
-    #print(y_test)
+    #print(X_train)
+    #print(X_test)
     #print(X_train['ID'].value_counts())
     #print(X_test['ID'].value_counts())
 
@@ -99,46 +156,29 @@ if __name__ == "__main__":
     #Para utilizar XGBoostRanker, debemos indicar el grupo al que debe clasificar
     groups = train.groupby('ID').size().to_frame('size')['size'].to_numpy()
 
-
     ###Elegimos los hipermarametros del entrenamiento###
-    
-    xgbr = xgb.XGBRanker(tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
-    
-    param = { 
-    'random_state':[2,7,30,42],
-    'learning_rate':[0.05,0.1,0.15,0.2,0.25,0.3], 
-    'max_depth':[4,5,6,7,8],
-    'n_estimators':[50,100,150,200],
-    'min_child_weight':[2,4,6],
-    'subsample':[0.5, 0.65,0.7,0.75,0.8]
-    }
-    
-    clf_xgb= GridSearchCV(xgbr, param_grid = param, cv = 3, scoring='accuracy')
-   
+       
     ####MODELO 1####
     #clf_xgb=xgb.XGBRanker( booster='gbtree', objective='rank:ndcg', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.5)
     
     ####MODELO 2####
-    #clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.05, max_depth=6, n_estimators=100, subsample=0.75, colsample_bytree=0.9) 
+    #clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.05, max_depth=9, n_estimators=200, subsample=0.7, colsample_bytree=0.9) 
     
     ####MODELO 3####
-    #clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=27, learning_rate=0.2, max_depth=6, n_estimators=120, subsample=0.65, colsample_bytree=0.9)
+    clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.2, max_depth=6, n_estimators=140, subsample=0.5, colsample_bytree=0.9)
 
     ####MODELO 4####
     #clf_xgb=xgb.XGBRanker( tree_method='hist', booster='gbtree', objective='rank:pairwise', random_state=7, learning_rate=0.2, max_depth=6, n_estimators=120, subsample=0.65, colsample_bytree=0.9)
 
     
     ###Se entrena el modelo###
-    clf_xgb.fit(X_train, y_train,group =groups, verbose=1)    
+    clf_xgb.fit(X_train, y_train, group =groups, verbose=True)    
     
-    print ("Mejor parametros")
-    print (clf_xgb.best_params_)
-
 
     ###Se muestra que columna da mas importancia el modelo###
-    #xgb.plot_importance(clf_xgb)
-    #draw()
-    #savefig("importancia", dpi=300)
+    xgb.plot_importance(clf_xgb)
+    draw()
+    savefig("pesos", dpi=250)
     
     print ('Se ha entrenado el modelo')
     
@@ -153,6 +193,9 @@ if __name__ == "__main__":
     predictions = (X_test.groupby('ID').apply(lambda x: predict(clf_xgb, x)))
     
     print ('Se ha obtenido el resultado de las carreras')
+    
+    
+    
     
 #########################################################################################################################
 
